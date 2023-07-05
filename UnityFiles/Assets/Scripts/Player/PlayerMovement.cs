@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public InputAction playerControls;
     Vector2 moveDirection = Vector2.zero;
     bool isJumping = false;
-    
+    Animator playerStickAnimation;
 
     private void OnEnable()
     {
@@ -22,16 +22,39 @@ public class PlayerMovement : MonoBehaviour
     {
         playerControls.Disable(); 
     }
+    private void Start()
+    {
+        playerStickAnimation = GetComponent<Animator>();
+    }
     void Update()
     {
         
         moveDirection = playerControls.ReadValue<Vector2>();
         if (Input.GetKeyDown(KeyCode.W)&&!isJumping)
             Jump();
+        StickAttack();
     }
-
+    private void StickAttack()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            playerStickAnimation.SetBool("StickAttack", true);
+        }
+       else if (playerStickAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        {
+            playerStickAnimation.SetBool("StickAttack", false);
+        }
+    }
     private void FixedUpdate()
     {
+        if (moveDirection.x > 0f)
+        {
+            transform.localScale = new Vector3(108f, 108f, 108f);
+        }
+        else if (moveDirection.x < 0f)
+        {
+            transform.localScale = new Vector3(-108f, 108f, 108f);
+        }
         rb.velocity = new Vector2(moveDirection.x * movementSpeed, rb.velocity.y);
     }
     void Jump()
