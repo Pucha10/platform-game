@@ -53,11 +53,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.mousePosition.x > Screen.width*0.5f)
         {
-            transform.localScale = new Vector3(108f, 108f, 108f);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         else if (Input.mousePosition.x < Screen.width * 0.5f)
         {
-            transform.localScale = new Vector3(-108f, 108f, 108f);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
     void Jump()

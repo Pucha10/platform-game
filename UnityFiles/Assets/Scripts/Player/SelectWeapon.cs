@@ -6,7 +6,7 @@ public class SelectWeapon : MonoBehaviour
 {
     public void Update()
     {
-        Debug.Log(transform.GetChild(0).GetChild(1).GetChild(1).GetChild(0).name);
+        
         if (Input.GetKeyDown("1"))
         {
             transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);

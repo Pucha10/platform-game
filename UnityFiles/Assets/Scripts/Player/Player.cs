@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player:MonoBehaviour
+public class Player
 {
     public int health;
     public int maxHealth;
@@ -14,12 +14,12 @@ public class Player:MonoBehaviour
 
     public Player(int health, int maxHealth, int mana, int maxMana, int strenght, int intelligence, int attackSpeed)
     {
-        this.health = 100;
-        this.maxHealth = 100;
-        this.mana = 100;
-        this.maxMana = 100;
-        this.strenght = 1;
-        this.intelligence = 1;
-        this.attackSpeed = 1;
+        this.health = health;
+        this.maxHealth = maxHealth;
+        this.mana = mana;
+        this.maxMana = maxMana;
+        this.strenght = strenght;
+        this.intelligence = intelligence;
+        this.attackSpeed = attackSpeed;
     }
 }
