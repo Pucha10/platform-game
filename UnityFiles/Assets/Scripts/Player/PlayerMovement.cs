@@ -27,16 +27,16 @@ public class PlayerMovement : MonoBehaviour
         playerStickAnimation = GetComponent<Animator>();
     }
     void Update()
-    {
-        
+    {   
         moveDirection = playerControls.ReadValue<Vector2>();
         if (Input.GetKeyDown(KeyCode.W)&&!isJumping)
             Jump();
+        SetHeroDirection();
         StickAttack();
     }
     private void StickAttack()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && transform.GetChild(0).GetChild(1).GetChild(0).gameObject.activeSelf)
         {
             playerStickAnimation.SetBool("StickAttack", true);
         }
@@ -47,15 +47,18 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (moveDirection.x > 0f)
+        rb.velocity = new Vector2(moveDirection.x * movementSpeed, rb.velocity.y);
+    }
+    void SetHeroDirection()
+    {
+        if (Input.mousePosition.x > Screen.width*0.5f)
         {
             transform.localScale = new Vector3(108f, 108f, 108f);
         }
-        else if (moveDirection.x < 0f)
+        else if (Input.mousePosition.x < Screen.width * 0.5f)
         {
             transform.localScale = new Vector3(-108f, 108f, 108f);
         }
-        rb.velocity = new Vector2(moveDirection.x * movementSpeed, rb.velocity.y);
     }
     void Jump()
     {
