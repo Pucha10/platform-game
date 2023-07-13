@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class WandsAttacks : MonoBehaviour
 {
     [SerializeField] GameObject BulletLvl1;
+    [SerializeField] GameObject BulletLvl2;
+    [SerializeField] GameObject BulletLvl3;
+
     void Update()
     {
         if (transform.GetChild(0).gameObject.activeSelf && Input.GetButtonDown("Fire1")) WandLevel1Attack();
@@ -20,10 +24,22 @@ public class WandsAttacks : MonoBehaviour
     {
         Instantiate(BulletLvl1, transform.GetChild(0).GetChild(0).position, transform.GetChild(0).GetChild(0).rotation);
     }
-    private void WandLevel2Attack() { }
-    private void WandLevel3Attack() { }
+    private void WandLevel2Attack() 
+    {
+        Instantiate(BulletLvl2, transform.GetChild(1).GetChild(0).position, transform.GetChild(1).GetChild(0).rotation);
+    }
+    private void WandLevel3Attack() 
+    {
+        Invoke("InstantiateBullet3", 0f);
+        Invoke("InstantiateBullet3", 0.25f);
+        Invoke("InstantiateBullet3", 0.5f);
+    }
     private void WandLevel4Attack() { }
     private void WandLevel5Attack() { }
     private void WandLevel6Attack() { }
     private void WandLevel7Attack() { }
+    void InstantiateBullet3()
+    {
+        Instantiate(BulletLvl3, transform.GetChild(2).GetChild(0).position, transform.GetChild(2).GetChild(0).rotation);
+    }
 }

@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletLevel1 : MonoBehaviour
+public class BulletLevel2 : MonoBehaviour
 {
     float lifetime = 10f;
     Player player;
     public Rigidbody2D rb;
-    public float speed = 10f;
+    public float speed = 8f;
     void Start()
     {
         player = GameManager.player;
         if (Input.mousePosition.x > Screen.width * 0.5f)
-            rb.AddForce(new Vector2(3f, speed), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(speed, 0), ForceMode2D.Impulse);
         else
-            rb.AddForce(new Vector2(-3f, speed), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(-speed, 0), ForceMode2D.Impulse);
         Invoke("DestroyObject", lifetime);
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -24,7 +25,6 @@ public class BulletLevel1 : MonoBehaviour
             {
                 DestroyObject();
                 //add damage
-                
             }
             else DestroyObject();
     }
@@ -32,5 +32,5 @@ public class BulletLevel1 : MonoBehaviour
     {
         if (gameObject != null) Destroy(gameObject);
     }
-
 }
+

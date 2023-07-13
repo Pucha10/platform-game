@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {   
-        moveDirection = playerControls.ReadValue<Vector2>();
+        
         if (Input.GetKeyDown(KeyCode.W)&&!isJumping)
             Jump();
         SetHeroDirection();
@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        moveDirection = playerControls.ReadValue<Vector2>();
         rb.velocity = new Vector2(moveDirection.x * movementSpeed, rb.velocity.y);
     }
     void SetHeroDirection()

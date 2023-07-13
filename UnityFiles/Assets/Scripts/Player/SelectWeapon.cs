@@ -27,6 +27,7 @@ public class SelectWeapon : MonoBehaviour
         else if (Input.GetKeyDown("3"))
         {
             transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).GetChild(1).GetChild(1).GetChild(0).gameObject.SetActive(false);
             transform.GetChild(0).GetChild(1).GetChild(1).GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).GetChild(1).GetChild(1).GetChild(2).gameObject.SetActive(false);
